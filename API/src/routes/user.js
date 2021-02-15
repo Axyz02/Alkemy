@@ -15,7 +15,7 @@ router.get('/', (req,res) => {
 
 router.get('/:concept', (req,res) =>{
     const { concept } = req.params;
-    mysqlConnection.query('SELECT * FROM user WHERE concept = %?%', [concept], (err,rows,fields) =>{
+    mysqlConnection.query(`SELECT * FROM user WHERE concept = "?"`,[concept], (err,rows,fields) =>{
         if(!err){
             res.json(rows[0]);
         } else{
