@@ -3,6 +3,8 @@ const router = express.Router();
 
 const mysqlConnection = require('../database');
 
+
+// * Basic router
 router.get('/', (req,res) => {
     mysqlConnection.query('SELECT * FROM user',(err, rows, fields) =>{
         if(!err){
@@ -13,6 +15,7 @@ router.get('/', (req,res) => {
     })
 });
 
+// * Concept query
 router.get('/:concept', (req,res) =>{
     const { concept } = req.params;
     mysqlConnection.query(`SELECT * FROM user WHERE concept = "?"`,[concept], (err,rows,fields) =>{
