@@ -1,4 +1,6 @@
 const mysql = require('mysql');
+
+// * Creating DB connection
 const mysqlConnection = mysql.createConnection({
     host: 'localhost',
     port: 3306,
@@ -7,6 +9,7 @@ const mysqlConnection = mysql.createConnection({
     database: 'finances'
 })
 
+// * Connecting to DB
 mysqlConnection.connect(function (err) {
     if(err){
         console.log('Database connection failure', err);
