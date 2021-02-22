@@ -18,7 +18,7 @@ router.get('/', (req,res) => {
 // * Concept query
 router.get('/:concept', (req,res) =>{
     const { concept } = req.params;
-    mysqlConnection.query(`SELECT * FROM user WHERE concept = "?"`,[concept], (err,rows,fields) =>{
+    mysqlConnection.query(`SELECT * FROM user WHERE concept = "${concept}"`, (err,rows,fields) =>{
         if(!err){
             res.json(rows[0]);
         } else{
@@ -28,4 +28,13 @@ router.get('/:concept', (req,res) =>{
     )
 })
 
+// TODO Post
+/*router.post('/',(req,res) =>{
+    const {id, concept, amount, date, type} = req.body;
+    //const query =
+})*/
+
+
+// TODO DELETE
+//router.delete(':/')
 module.exports = router;
