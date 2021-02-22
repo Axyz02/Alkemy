@@ -31,10 +31,26 @@ router.get('/:concept', (req,res) =>{
 // TODO Post
 router.post('/',(req,res) =>{
     const {id, concept, amount, date, type} = req.body;
-    mysqlConnection.query(`INSERT INTO user VALUES(${id},'${concept}', ${amount},'${date}','${type}');`)
+    mysqlConnection.query(`INSERT INTO user VALUES(${id},'${concept}', ${amount},'${date}','${type}');`,(err,rows,fields) =>{
+        if(!err){
+            res.json({Status: 'Movement Saved'});
+        } else {
+            console.log(err);
+        }
+    })
 })
 
 // TODO PUT
+/*router.put('/:concept',(req,res) =>{
+    const {id, concept, amount, date, type} = req.body;
+    mysqlConnection.query(`INSERT INTO user VALUES(${id},'${concept}', ${amount},'${date}','${type}');`,(err,rows,fields) =>{
+        if(!err){
+            res.json({Status: 'Movement Saved'});
+        } else {
+            console.log(err);
+        }
+    })
+}) */
 // TODO DELETE
 router.delete('/:concept', (req,res) =>{
     const { concept } = req.params;
