@@ -28,10 +28,10 @@ router.get('/:concept', (req,res) =>{
     )
 })
 
-// TODO Post
+// TODO FIX Post
 router.post('/',(req,res) =>{
-    const {id, concept, amount, date, type} = req.body;
-    mysqlConnection.query(`INSERT INTO user VALUES(${id},'${concept}', ${amount},'${date}','${type}');`,(err,rows,fields) =>{
+    const {concept, amount, date, type} = req.body;
+    mysqlConnection.query(`INSERT INTO user (concept,amount,date,type) VALUES('${concept}', ${amount},'${date}','${type}');`,(err,rows,fields) =>{
         if(!err){
             res.json({Status: 'Movement Saved'});
         } else {
