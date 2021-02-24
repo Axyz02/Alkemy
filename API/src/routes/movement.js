@@ -6,7 +6,7 @@ const mysqlConnection = require('../database');
 
 // * Basic router
 router.get('/', (req,res) => {
-    mysqlConnection.query('SELECT * FROM user',(err, rows, fields) =>{
+    mysqlConnection.query('SELECT * FROM movement',(err, rows, fields) =>{
         if(!err){
             res.json(rows);
         } else{
@@ -18,7 +18,7 @@ router.get('/', (req,res) => {
 // * Concept query
 router.get('/:concept', (req,res) =>{
     const { concept } = req.params;
-    mysqlConnection.query(`SELECT * FROM user WHERE concept = "${concept}"`, (err,rows,fields) =>{
+    mysqlConnection.query(`SELECT * FROM movement WHERE concept = "${concept}"`, (err,rows,fields) =>{
         if(!err){
             res.json(rows[0]);
         } else{
@@ -31,7 +31,7 @@ router.get('/:concept', (req,res) =>{
 // * POST COMPLETED
 router.post('/',(req,res) =>{
     const {concept, amount, date, type} = req.body;
-    mysqlConnection.query(`INSERT INTO user (concept,amount,date,type) VALUES('${concept}', ${amount},'${date}','${type}');`,(err,rows,fields) =>{
+    mysqlConnection.query(`INSERT INTO movement (concept,amount,date,type) VALUES('${concept}', ${amount},'${date}','${type}');`,(err,rows,fields) =>{
         if(!err){
             res.json({Status: 'Movement Saved'});
         } else {
@@ -43,7 +43,7 @@ router.post('/',(req,res) =>{
 // * PUT DONE
 router.put('/:id',(req,res) =>{
     const {id,concept, amount, date, type} = req.body;
-    mysqlConnection.query(`UPDATE user SET concept = '${concept}', amount = ${amount}, date = '${date}', type = '${type}' WHERE id = ${id};`,(err,rows,fields) =>{
+    mysqlConnection.query(`UPDATE movement SET concept = '${concept}', amount = ${amount}, date = '${date}', type = '${type}' WHERE id = ${id};`,(err,rows,fields) =>{
         if(!err){
             res.json({Status: 'Movement Updated'});
         } else {
@@ -55,7 +55,7 @@ router.put('/:id',(req,res) =>{
 // * DELETE
 router.delete('/:id', (req,res) =>{
     const { id } = req.params;
-    mysqlConnection.query(`DELETE FROM user WHERE id = "${id}"`, (err,rows,fields) =>{
+    mysqlConnection.query(`DELETE FROM movement WHERE id = "${id}"`, (err,rows,fields) =>{
         if(!err){
             res.json({Status: 'Movement Deleted'});
         } else{
