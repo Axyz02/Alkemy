@@ -28,7 +28,7 @@ router.get('/:concept', (req,res) =>{
     )
 })
 
-// TODO FIX Post
+// * POST COMPLETED
 router.post('/',(req,res) =>{
     const {concept, amount, date, type} = req.body;
     mysqlConnection.query(`INSERT INTO user (concept,amount,date,type) VALUES('${concept}', ${amount},'${date}','${type}');`,(err,rows,fields) =>{
@@ -40,10 +40,10 @@ router.post('/',(req,res) =>{
     })
 })
 
-// TODO PUT
+// * PUT DONE
 router.put('/:id',(req,res) =>{
     const {id,concept, amount, date, type} = req.body;
-    mysqlConnection.query(`UPDATE user SET concept = '${concept}', SET amount = ${amount}, SET date = '${date}', SET type = '${type}' WHERE id = ${id});`,(err,rows,fields) =>{
+    mysqlConnection.query(`UPDATE user SET concept = '${concept}', amount = ${amount}, date = '${date}', type = '${type}' WHERE id = ${id};`,(err,rows,fields) =>{
         if(!err){
             res.json({Status: 'Movement Updated'});
         } else {
@@ -52,7 +52,7 @@ router.put('/:id',(req,res) =>{
     })
 })
 
-// TODO DELETE
+// * DELETE
 router.delete('/:id', (req,res) =>{
     const { id } = req.params;
     mysqlConnection.query(`DELETE FROM user WHERE id = "${id}"`, (err,rows,fields) =>{
